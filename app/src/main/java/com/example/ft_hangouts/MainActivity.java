@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(v -> {
             counter--;
             if (counter >= 0) {
-                String text = "Form will be open after %s clicks".format(Values[counter]);
+                String text = "Form will be open after %s clicks";
+                text = String.format(text, this.Values[counter]);
                 textView.setText(text);
                 return;
             }
