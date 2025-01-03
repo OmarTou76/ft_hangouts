@@ -16,6 +16,4 @@
         android:title="Préférences"
         android:icon="@android:drawable/ic_menu_preferences"
         app:showAsAction="collapseActionView" />
-
-
 </menu>

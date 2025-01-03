@@ -1,15 +1,19 @@
-package com.example.ft_hangouts;
+package com.example.ft_hangouts.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ft_hangouts.ContactActivity;
+import com.example.ft_hangouts.R;
 import com.example.ft_hangouts.models.Contact;
 
 import java.util.List;
@@ -26,13 +30,12 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     public static class ContactViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView contactName;
-        private final TextView contactPhone;
 
         public ContactViewHolder(@NonNull View itemView) {
             super(itemView);
             contactName = itemView.findViewById(R.id.contact_name);
-            contactPhone = itemView.findViewById(R.id.contact_phone);
         }
+
     }
 
     @NonNull
@@ -46,7 +49,12 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     public void onBindViewHolder(@NonNull ContactAdapter.ContactViewHolder holder, int position) {
         Contact contact = this.contacts.get(position);
         holder.contactName.setText(String.format("%s %s", contact.getFirstName(), contact.getLastName()));
-        holder.contactPhone.setText(contact.getPhone());
+        holder.itemView.setOnClickListener(v -> {
+            Toast.makeText(v.getContext(), String.format("%s contact triggered with ID %s !", contact.getFirstName(), contact.getId()), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, ContactActivity.class);
+            intent.putExtra("ID", contact.getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override
