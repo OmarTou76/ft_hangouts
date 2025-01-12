@@ -50,7 +50,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         Contact contact = this.contacts.get(position);
         holder.contactName.setText(String.format("%s %s", contact.getFirstName(), contact.getLastName()));
         holder.itemView.setOnClickListener(v -> {
-            Toast.makeText(v.getContext(), String.format("%s contact triggered with ID %s !", contact.getFirstName(), contact.getId()), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(context, ContactActivity.class);
             intent.putExtra("ID", contact.getId());
             context.startActivity(intent);

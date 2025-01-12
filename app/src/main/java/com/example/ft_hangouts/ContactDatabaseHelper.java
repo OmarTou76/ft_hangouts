@@ -53,6 +53,7 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_CONTACTS,null, values);
         db.close();
     }
+
     public List<Contact> searchContacts(String[] keywords) {
         List<Contact> filteredContacts = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -86,6 +87,29 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
         return filteredContacts;
     }
 
+    public void setContact(Contact contact) {
+        if (contact.getId() == -1) {
+            this.addContact(contact);
+            return;
+        }
+        this.updateContact(contact);
+    }
+
+    private void updateContact(Contact contact) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_FIRST_NAME, contact.getFirstName());
+        values.put(COLUMN_LAST_NAME, contact.getLastName());
+        values.put(COLUMN_PHONE_NUMBER, contact.getPhone());
+        values.put(COLUMN_EMAIL, contact.getEmail());
+
+        String whereClause = COLUMN_ID + " = ?";
+        String[] args = new String[]{String.valueOf(contact.getId())};
+        db.update(TABLE_CONTACTS, values, whereClause, args);
+        db.close();
+    }
+
     public Contact getContactById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] args = new String[]{String.valueOf(id)};
@@ -102,6 +126,7 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return contact;
     }
+
     public List<Contact> getAllContacts() {
         List<Contact> contacts = new ArrayList<Contact>();
         SQLiteDatabase db = this.getReadableDatabase();
