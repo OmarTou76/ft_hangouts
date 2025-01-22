@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="icon"
-        android:src="@android:drawable/ic_media_play"
+        android:src="@android:drawable/ic_menu_call"
         android:background="?attr/selectableItemBackgroundBorderless"
         app:tint="#000"
         />
@@ -30,6 +30,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Call"
+        android:text=""
+        android:textColor="@color/black"
+        android:paddingTop="8dp"
         />
 </LinearLayout>

@@ -8,6 +8,9 @@
     <string name="button_add">Add a new contact</string>
     <string name="button_create_contact">Create contact</string>
     <string name="button_update_contact">Save changes</string>
+    <string name="contact_info">Contact info</string>
+    <string name="icon">Icon</string>
+
 
     <string name="missing_field">Missing field !</string>
     <string name="contact_created">Contact created !</string>
