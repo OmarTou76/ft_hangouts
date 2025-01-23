@@ -1,6 +1,6 @@
-# Contact Manager
+# Ft_hangouts
 
-Contact Manager is a mobile application currently under development as part of a 42 project. The app is being built using **Android Studio** and **Java**.
+Ft_hangouts is a mobile application currently under development as part of a 42 project. The app is being built using **Android Studio** and **Java**.
 Main Features (in progress):
 
 - Contact management: add, edit, and delete contacts.
