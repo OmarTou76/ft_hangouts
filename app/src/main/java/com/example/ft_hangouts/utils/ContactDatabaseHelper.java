@@ -1,4 +1,4 @@
-package com.example.ft_hangouts;
+package com.example.ft_hangouts.utils;
 
 import android.content.ContentValues;
 import android.content.Context;

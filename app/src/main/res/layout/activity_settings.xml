@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <include layout="@layout/toolbar" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="36dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        >
+     <TextView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="Header color"
+         android:textSize="20sp"
+         android:textStyle="bold"
+         android:layout_marginBottom="8dp"
+         />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                >
+                <RadioButton android:id="@+id/radio_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Black"
+                    android:buttonTint="@color/primary"
+                    android:textSize="18sp"
+                    />
+                <View
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/rounded_img_big"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@color/primary"
+                    />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                >
+                <RadioButton android:id="@+id/radio_orange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Orange"
+                    android:buttonTint="@color/secondary"
+                    android:textSize="18sp"
+                    />
+                <View
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/rounded_img_big"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@color/secondary"
+                    />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                >
+                <RadioButton android:id="@+id/radio_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blue"
+                    android:buttonTint="@color/third"
+                    android:textSize="18sp"
+                    />
+                <View
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/rounded_img_big"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@color/third"
+                    />
+            </FrameLayout>
+        </RadioGroup>
+
+    </LinearLayout>
+</LinearLayout>

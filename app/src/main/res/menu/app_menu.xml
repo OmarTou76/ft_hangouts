@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
     <item
-        android:id="@+id/menu_help"
-        android:title="Aide"
-        android:icon="@android:drawable/ic_menu_help"
-        app:showAsAction="collapseActionView" />
-    <item
-        android:id="@+id/menu_edit"
-        android:title="Edition"
+        android:id="@+id/action_settings"
         android:icon="@android:drawable/ic_menu_edit"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/menu_preferences"
-        android:title="Préférences"
-        android:icon="@android:drawable/ic_menu_preferences"
-        app:showAsAction="collapseActionView" />
+        android:title="@string/contact_phone"
+        app:showAsAction="ifRoom"/>
 </menu>

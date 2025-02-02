@@ -4,6 +4,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF1000</color>
     <color name="red_light">#FF7276</color>
+    <color name="primary">#1D1616</color>
+    <color name="secondary">#EA906C</color>
+    <color name="third">#567189</color>
+
 
     <style name="CustomFABStyle" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="elevation">6dp</item>

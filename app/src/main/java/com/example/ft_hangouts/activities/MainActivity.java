@@ -1,71 +1,80 @@
-package com.example.ft_hangouts;
+package com.example.ft_hangouts.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 
 
+import com.example.ft_hangouts.utils.AToolbar;
 import com.example.ft_hangouts.Adapters.ContactAdapter;
+import com.example.ft_hangouts.utils.ContactDatabaseHelper;
+import com.example.ft_hangouts.R;
 import com.example.ft_hangouts.models.Contact;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AToolbar {
 
-    private ArrayList<Contact> contacts;
+    private FloatingActionButton fab;
 
     EditText searchContact;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        configureContactsList();
+        fab = findViewById(R.id.add_contact);
+        fab.setBackgroundTintList(ColorStateList.valueOf(getSavedHeaderColor()));
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CreateContactActivity.class);
+            this.startActivity(intent);
+        });
+    }
+
+    @Override
+    protected int getLayoutResource() { return R.layout.activity_main; }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        configureContactsList();
+        fab.setBackgroundTintList(ColorStateList.valueOf(getSavedHeaderColor()));
+    }
+
+    private void configureContactsList() {
         ContactDatabaseHelper store = new ContactDatabaseHelper(this);
         this.addMockContacts(store);
-        contacts = (ArrayList<Contact>) store.getAllContacts();
+        ArrayList<Contact> contacts = (ArrayList<Contact>) store.getAllContacts();
         RecyclerView contactsView = findViewById(R.id.rv_contact);
         ContactAdapter contactAdapter = new ContactAdapter(this, contacts);
 
         contactsView.setAdapter(contactAdapter);
         contactsView.setLayoutManager(new LinearLayoutManager(this));
 
-        FloatingActionButton addContact = findViewById(R.id.add_contact);
-        addContact.setOnClickListener(v -> {
-            Intent intent = new Intent(this, CreateContactActivity.class);
-            this.startActivity(intent);
-        });
         searchContact = findViewById(R.id.search_contact);
         searchContact.addTextChangedListener(new TextWatcher() {
-           @Override
-           public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-           }
-
-           @Override
-           public void onTextChanged(CharSequence s, int start, int before, int count) {
-              String[] words = s.toString().split(" ");
-              List<Contact> filteredContact = store.searchContacts(words);
-
-              contactAdapter.updateContacts(filteredContact);
-           }
-
-           @Override
-           public void afterTextChanged(Editable s) {
-
-           }
-       });
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String[] words = s.toString().split(" ");
+                List<Contact> filteredContact = store.searchContacts(words);
+                contactAdapter.updateContacts(filteredContact);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
     }
+
 
     public void addMockContacts(ContactDatabaseHelper store) {
         if (!store.getAllContacts().isEmpty())

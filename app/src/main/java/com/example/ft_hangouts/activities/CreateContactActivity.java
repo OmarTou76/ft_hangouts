@@ -1,4 +1,4 @@
-package com.example.ft_hangouts;
+package com.example.ft_hangouts.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,11 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.ft_hangouts.utils.AToolbar;
+import com.example.ft_hangouts.utils.ContactDatabaseHelper;
+import com.example.ft_hangouts.R;
 import com.example.ft_hangouts.models.Contact;
 
-public class CreateContactActivity extends AppCompatActivity {
+public class CreateContactActivity extends AToolbar {
 
     ContactDatabaseHelper store;
     Contact contact = null;
@@ -24,7 +25,6 @@ public class CreateContactActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_contact);
 
         firstName = (EditText)findViewById(R.id.first_name);
         lastName = (EditText)findViewById(R.id.last_name);
@@ -45,6 +45,9 @@ public class CreateContactActivity extends AppCompatActivity {
         }
         this.handleForm();
     }
+
+    @Override
+    protected int getLayoutResource() { return R.layout.activity_set_contact; }
 
     private void populateForm() {
         this.firstName.setText(contact.getFirstName());
@@ -68,8 +71,7 @@ public class CreateContactActivity extends AppCompatActivity {
                     phoneNumber.getText().toString(), email.getText().toString());
             contact.setId(id);
             this.store.setContact(contact);
-            Intent intent = new Intent(this, MainActivity.class);
-            this.startActivity(intent);
+            this.finish();
         });
     }
 
