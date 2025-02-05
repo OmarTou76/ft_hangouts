@@ -1,6 +1,5 @@
 package com.example.ft_hangouts.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,20 +34,35 @@ public class CreateContactActivity extends AToolbar {
         int id = getIntent().getIntExtra("ID", -1);
         if (id != -1) {
             this.contact = store.getContactById(id);
-            if (this.contact == null)
+            if (this.contact == null) {
                 Toast.makeText(this, "Contact not found", Toast.LENGTH_SHORT).show();
+                finish();
+            }
             else {
                 populateForm();
                 Button submit = findViewById(R.id.submit);
                 submit.setText(R.string.button_update_contact);
+                setToolbarTitle(getString(R.string.title_edit_contact));
             }
         }
         this.handleForm();
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        EditText v = (EditText)findViewById(R.id.first_name);
+        if (!v.getHint().toString().equals(getString(R.string.first_name))) {
+            recreate();
+        }
+    }
+
+    @Override
     protected int getLayoutResource() { return R.layout.activity_set_contact; }
 
+    @Override
+    protected String getActivityTitle() { return getString(R.string.button_create_contact); }
     private void populateForm() {
         this.firstName.setText(contact.getFirstName());
         this.lastName.setText(contact.getLastName());

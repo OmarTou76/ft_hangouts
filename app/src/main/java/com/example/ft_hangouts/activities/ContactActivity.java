@@ -3,12 +3,9 @@ package com.example.ft_hangouts.activities;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -95,6 +92,10 @@ public class ContactActivity extends AToolbar {
     @Override
     protected int getLayoutResource() { return R.layout.activity_contact; }
 
+    @Override
+    protected String getActivityTitle() {
+        return "";
+    }
     @FunctionalInterface
     public interface ButtonCallback {
         void onButtonClick(ImageButton button);

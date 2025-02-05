@@ -19,7 +19,7 @@
                     android:id="@+id/search_contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints="search contact"
+                    android:autofillHints="@string/search_contact"
                     android:hint="@string/search_contact"
                     android:textColorHint="@color/black"
                     android:inputType="text"

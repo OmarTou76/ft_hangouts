@@ -44,10 +44,19 @@ public class MainActivity extends AToolbar {
 
 
     @Override
+    protected String getActivityTitle() { return getString(R.string.contact); }
+
+
+    @Override
     protected void onResume() {
         super.onResume();
         configureContactsList();
         fab.setBackgroundTintList(ColorStateList.valueOf(getSavedHeaderColor()));
+
+        EditText v = findViewById(R.id.search_contact);
+        if (!v.getHint().toString().equals(getString(R.string.search_contact))) {
+            recreate();
+        }
     }
 
     private void configureContactsList() {
