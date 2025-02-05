@@ -5,9 +5,9 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.LayoutRes;
@@ -16,6 +16,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.ft_hangouts.R;
 import com.example.ft_hangouts.activities.SettingsActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public abstract class AToolbar extends AppCompatActivity {
     private static final String HEADER_PREFS = "HeaderPrefs";
@@ -40,6 +44,18 @@ public abstract class AToolbar extends AppCompatActivity {
         super.onResume();
         updateLanguage();
         applySavedHeaderColor();
+
+        long backgroundTime = App.getLastBackgroundTime();
+        if (backgroundTime != 0) {
+            String time = formatTime(backgroundTime);
+            Toast.makeText(this, "App went to background at: " + time, Toast.LENGTH_LONG).show();
+            App.resetLastBackgroundTime();
+        }
+    }
+
+    private String formatTime(long timestamp) {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        return sdf.format(new Date(timestamp));
     }
 
     private void updateLanguage() {
