@@ -7,7 +7,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ft_hangouts.utils.AToolbar;
-import com.example.ft_hangouts.utils.ContactDatabaseHelper;
+import com.example.ft_hangouts.database.ContactDatabaseHelper;
 import com.example.ft_hangouts.R;
 import com.example.ft_hangouts.models.Contact;
 

@@ -1,4 +1,4 @@
-package com.example.ft_hangouts.utils;
+package com.example.ft_hangouts;
 
 import android.app.Application;
 import android.os.Handler;

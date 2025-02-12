@@ -8,6 +8,9 @@
 
     <string name="title_edit_contact">Edit contact</string>
 
+    <string name="text_message">Text message</string>
+    <string name="empty_message">Text message is empty !</string>
+
     <string name="search_contact">Search contact</string>
     <string name="image_contact">Search contact</string>
     <string name="button_add">Add a new contact</string>

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ft_hangouts.utils.AToolbar;
-import com.example.ft_hangouts.utils.ContactDatabaseHelper;
+import com.example.ft_hangouts.database.ContactDatabaseHelper;
 import com.example.ft_hangouts.R;
 import com.example.ft_hangouts.models.Contact;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,6 +20,23 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class ContactActivity extends AToolbar {
 
     private Contact contact;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        this.setUpButtons();
+        fetchAndDisplayContact();
+        handleButtonDelete();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        fetchAndDisplayContact();
+        this.setUpButtons();
+    }
 
     private void fetchAndDisplayContact() {
         TextView name = findViewById(R.id.name);
@@ -45,22 +62,6 @@ public class ContactActivity extends AToolbar {
         phone.setText(String.format("%s", this.contact.getPhone()));
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        this.setUpButtons();
-        fetchAndDisplayContact();
-        handleButtonDelete();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        fetchAndDisplayContact();
-        this.setUpButtons();
-    }
 
     public void deleteContact(View view) {
         new AlertDialog.Builder(this)
@@ -130,9 +131,8 @@ public class ContactActivity extends AToolbar {
         this.startActivity(intent);
     }
     private void textContact() {
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        String url = String.format("smsto:%s", this.contact.getPhone());
-        intent.setData(Uri.parse(url));
+        Intent intent = new Intent(this, MessagesActivity.class);
+        intent.putExtra("ID", contact.getId());
         this.startActivity(intent);
     }
 

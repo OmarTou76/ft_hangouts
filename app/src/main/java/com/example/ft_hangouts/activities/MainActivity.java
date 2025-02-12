@@ -13,7 +13,7 @@ import android.widget.EditText;
 
 import com.example.ft_hangouts.utils.AToolbar;
 import com.example.ft_hangouts.Adapters.ContactAdapter;
-import com.example.ft_hangouts.utils.ContactDatabaseHelper;
+import com.example.ft_hangouts.database.ContactDatabaseHelper;
 import com.example.ft_hangouts.R;
 import com.example.ft_hangouts.models.Contact;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

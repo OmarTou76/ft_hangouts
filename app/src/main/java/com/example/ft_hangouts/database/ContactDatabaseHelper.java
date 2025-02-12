@@ -1,4 +1,4 @@
-package com.example.ft_hangouts.utils;
+package com.example.ft_hangouts.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -114,6 +114,24 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] args = new String[]{String.valueOf(id)};
         Cursor cursor = db.rawQuery("SELECT * FROM contacts WHERE id = ?", args);
+        Contact contact = new Contact();
+        if (cursor != null && cursor.moveToFirst()) {
+            contact.setId(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)));
+            contact.setFirstName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FIRST_NAME)));
+            contact.setLastName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LAST_NAME)));
+            contact.setPhone(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PHONE_NUMBER)));
+            contact.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EMAIL)));
+            cursor.close();
+        }
+        db.close();
+        return contact;
+    }
+
+    public Contact getContactByPhoneNumber(String phoneNumber) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] args = new String[]{phoneNumber};
+        String query = "SELECT * FROM contacts WHERE " + COLUMN_PHONE_NUMBER +" = ?";
+        Cursor cursor = db.rawQuery(query, args);
         Contact contact = new Contact();
         if (cursor != null && cursor.moveToFirst()) {
             contact.setId(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)));

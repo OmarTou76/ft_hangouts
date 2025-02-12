@@ -1,7 +1,5 @@
 package com.example.ft_hangouts.models;
 
-import java.util.UUID;
-
 public class Contact {
     private int id;
     private String firstName;
