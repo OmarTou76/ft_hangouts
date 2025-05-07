@@ -3,7 +3,6 @@ package com.example.ft_hangouts.activities;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
-import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.TypedValue;
@@ -58,12 +57,12 @@ public class MessagesActivity extends AToolbar {
         textMessage = findViewById(R.id.text_message);
         fetchContact();
         initSendButton();
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        isActive = true;
         fab.setBackgroundTintList(ColorStateList.valueOf(getSavedHeaderColor()));
 
         EditText v = findViewById(R.id.text_message);
@@ -74,21 +73,23 @@ public class MessagesActivity extends AToolbar {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         isActive = false;
     }
+
     public static MessagesActivity getInstance() {
         return instance;
     }
 
     public void handleNewMessage(String sender, String content) {
-        if (contact != null && contact.getPhone().equals(sender)) {
+        if (contact != null && contact.getPhone().equals(contactStore.normalizePhoneNumber(sender))) {
             Message message = new Message(contact.getId(), true, content);
             runOnUiThread(() -> appendMessageToUI(message));
             messageContainer.post(() -> messageContainer.fullScroll(View.FOCUS_DOWN));
         }
     }
+
     @Override
     protected int getLayoutResource() { return R.layout.activity_messages; }
 

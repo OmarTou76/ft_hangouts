@@ -48,7 +48,7 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
 
         values.put(COLUMN_FIRST_NAME, contact.getFirstName());
         values.put(COLUMN_LAST_NAME, contact.getLastName());
-        values.put(COLUMN_PHONE_NUMBER, contact.getPhone());
+        values.put(COLUMN_PHONE_NUMBER, normalizePhoneNumber(contact.getPhone()));
         values.put(COLUMN_EMAIL, contact.getEmail());
         db.insert(TABLE_CONTACTS,null, values);
         db.close();
@@ -101,7 +101,7 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
 
         values.put(COLUMN_FIRST_NAME, contact.getFirstName());
         values.put(COLUMN_LAST_NAME, contact.getLastName());
-        values.put(COLUMN_PHONE_NUMBER, contact.getPhone());
+        values.put(COLUMN_PHONE_NUMBER, normalizePhoneNumber(contact.getPhone()));
         values.put(COLUMN_EMAIL, contact.getEmail());
 
         String whereClause = COLUMN_ID + " = ?";
@@ -127,9 +127,17 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
         return contact;
     }
 
+    public String normalizePhoneNumber(String phone) {
+        String phoneNumber = phone.replaceAll("[\\s-]", "");
+        if (phoneNumber.startsWith("+33"))
+            return phoneNumber.replaceFirst("\\+33", "0");
+        return phoneNumber;
+    }
+
     public Contact getContactByPhoneNumber(String phoneNumber) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] args = new String[]{phoneNumber};
+        String normalizedPhoneNum = normalizePhoneNumber(phoneNumber);
+        String[] args = new String[]{normalizedPhoneNum};
         String query = "SELECT * FROM contacts WHERE " + COLUMN_PHONE_NUMBER +" = ?";
         Cursor cursor = db.rawQuery(query, args);
         Contact contact = new Contact();
