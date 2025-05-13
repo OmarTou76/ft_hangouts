@@ -1,6 +1,7 @@
 package com.example.ft_hangouts.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,8 @@ public class CreateContactActivity extends AToolbar {
     EditText phoneNumber;
     EditText email;
 
+    EditText nickname;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,7 @@ public class CreateContactActivity extends AToolbar {
         lastName = (EditText)findViewById(R.id.last_name);
         phoneNumber = (EditText)findViewById(R.id.phone_number);
         email = (EditText)findViewById(R.id.email);
+        nickname = (EditText)findViewById(R.id.nickname);
 
         store = new ContactDatabaseHelper(this);
         int id = getIntent().getIntExtra("ID", -1);
@@ -73,8 +77,16 @@ public class CreateContactActivity extends AToolbar {
         View submit = findViewById(R.id.submit);
 
         submit.setOnClickListener(v -> {
-            if (!checkForm(firstName, lastName, phoneNumber, email)) {
-                Toast.makeText(this, R.string.missing_field, Toast.LENGTH_SHORT).show();
+            if (firstName.getText().toString().isEmpty()) {
+                Toast.makeText(this, R.string.missing_firstname, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!isValidEmail(email.getText().toString())) {
+                Toast.makeText(this, R.string.invalid_email, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!isValidPhoneNumber(this.store.normalizePhoneNumber(phoneNumber.getText().toString()))) {
+                Toast.makeText(this, R.string.invalid_phone, Toast.LENGTH_SHORT).show();
                 return;
             }
             int id = -1;
@@ -82,19 +94,21 @@ public class CreateContactActivity extends AToolbar {
                 id = contact.getId();
             }
             contact = new Contact(firstName.getText().toString(), lastName.getText().toString(),
-                    phoneNumber.getText().toString(), email.getText().toString());
+                    phoneNumber.getText().toString(), email.getText().toString(), nickname.getText().toString());
             contact.setId(id);
             this.store.setContact(contact);
             this.finish();
         });
     }
 
-    private boolean checkForm(EditText ...args) {
-        for (EditText arg : args) {
-            if (arg.getText().toString().isEmpty())
-                return false;
-        }
-        return true;
+    public boolean isValidEmail(String email) {
+        Log.d("TEST", email);
+        return email.matches("(?i)^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$");
     }
+
+    private static boolean isValidPhoneNumber(String phone) {
+        return phone != null && phone.matches("^(\\+33|0)[1-9](\\d{2}){4}$");
+    }
+
 
 }

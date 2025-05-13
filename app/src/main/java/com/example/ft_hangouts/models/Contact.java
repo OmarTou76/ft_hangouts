@@ -7,15 +7,18 @@ public class Contact {
     private String phone;
     private String email;
 
+    private String nickname;
+
     public Contact() {
         this.id = -1;
     }
-    public Contact(String firstName, String lastName, String phone, String email) {
+    public Contact(String firstName, String lastName, String phone, String email, String nickname) {
            this.id = -1;
            this.firstName = firstName;
            this.lastName = lastName;
            this.phone = phone;
            this.email = email;
+           this.nickname = nickname;
     }
 
     public void setId(int id) {
@@ -24,6 +27,10 @@ public class Contact {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public void setLastName(String lastName) {
@@ -43,5 +50,7 @@ public class Contact {
     public String getLastName() { return this.lastName; }
     public String getPhone() { return this.phone; }
     public String getEmail() { return this.email; }
+
+    public String getNickname() { return this.nickname; }
 
 }

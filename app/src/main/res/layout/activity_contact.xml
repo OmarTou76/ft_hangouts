@@ -6,150 +6,157 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
         >
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
-        <include layout="@layout/toolbar" />
-        <LinearLayout android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingHorizontal="16dp"
-            android:paddingTop="76dp"
-            >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginBottom="24dp"
-                    android:orientation="vertical"
-                    tools:ignore="UseCompoundDrawables"
-                    >
-                        <ImageView
-                            android:layout_width="164dp"
-                            android:layout_height="164dp"
-                            android:background="@drawable/rounded_img_big"
-                            android:contentDescription="@string/image_contact"
-                            android:src="@drawable/logo42" />
-                        <TextView
-                            android:id="@+id/name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="24sp"
-                            android:text="@string/contact_name"
-                            android:padding="16dp"
-                            />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:padding="16dp"
-                    android:layout_marginHorizontal="16dp"
-                    >
-                        <include layout="@layout/icon_text_component"
-                            android:id="@+id/icon_btn_left"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                        <include layout="@layout/icon_text_component"
-                            android:id="@+id/icon_btn_mid"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            />
-                        <include layout="@layout/icon_text_component"
-                            android:id="@+id/icon_btn_right"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/block_border"
-                    android:padding="8dp"
-                    >
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/contact_info"
-                                android:textStyle="bold"
-                                android:textSize="18sp"
-                                android:padding="8dp"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-                                />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                        <include layout="@layout/toolbar" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_margin="8dp"
-                            android:gravity="center_vertical"
-                            tools:ignore="UseCompoundDrawables">
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="16dp"
+                            android:paddingTop="76dp">
 
-                                <ImageView
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:contentDescription="@string/icon"
-                                    android:src="@android:drawable/ic_menu_call"
-                                    android:padding="8dp"
-                                    />
-                                <TextView
-                                    android:id="@+id/phone_number"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/contact_phone"
-                                    android:textSize="18sp"
-                                    android:padding="8dp"
-                                    />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_margin="8dp"
-                            android:gravity="center_vertical"
-                            tools:ignore="UseCompoundDrawables">
+                                    android:layout_marginBottom="24dp"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    tools:ignore="UseCompoundDrawables">
 
-                                <ImageView
+                                        <ImageView
+                                            android:layout_width="164dp"
+                                            android:layout_height="164dp"
+                                            android:background="@drawable/rounded_img_big"
+                                            android:contentDescription="@string/image_contact"
+                                            android:src="@drawable/logo42" />
+
+                                        <TextView
+                                            android:id="@+id/name"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:padding="16dp"
+                                            android:text="@string/contact_name"
+                                            android:textSize="24sp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="16dp"
+                                    android:baselineAligned="false"
+                                    android:padding="16dp">
+
+                                        <include
+                                            android:id="@+id/icon_btn_left"
+                                            layout="@layout/icon_text_component"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content" />
+
+                                        <include
+                                            android:id="@+id/icon_btn_mid"
+                                            layout="@layout/icon_text_component"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1" />
+
+                                        <include
+                                            android:id="@+id/icon_btn_right"
+                                            layout="@layout/icon_text_component"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/block_border"
+                                    android:orientation="vertical"
+                                    android:padding="8dp">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:padding="8dp"
+                                            android:text="@string/contact_info"
+                                            android:textSize="18sp"
+                                            android:textStyle="bold"
+
+                                            />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="8dp"
+                                            android:gravity="center_vertical"
+                                            android:orientation="horizontal"
+                                            tools:ignore="UseCompoundDrawables">
+
+                                                <ImageView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:contentDescription="@string/icon"
+                                                    android:padding="8dp"
+                                                    android:src="@android:drawable/ic_menu_call" />
+
+                                                <TextView
+                                                    android:id="@+id/phone_number"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:padding="8dp"
+                                                    android:text="@string/contact_phone"
+                                                    android:textSize="18sp" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="8dp"
+                                            android:gravity="center_vertical"
+                                            android:orientation="horizontal"
+                                            tools:ignore="UseCompoundDrawables">
+
+                                                <ImageView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:contentDescription="@string/icon"
+                                                    android:padding="8dp"
+                                                    android:src="@android:drawable/ic_dialog_email" />
+
+                                                <TextView
+                                                    android:id="@+id/email"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:padding="8dp"
+                                                    android:text="@string/contact_name"
+                                                    android:textSize="18sp" />
+                                        </LinearLayout>
+                                </LinearLayout>
+
+                                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                    android:id="@+id/delete_contact_landscape"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:contentDescription="@string/icon"
-                                    android:src="@android:drawable/ic_dialog_email"
-                                    android:padding="8dp"
-                                    />
-                                <TextView
-                                    android:id="@+id/email"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/contact_name"
-                                    android:textSize="18sp"
-                                    android:padding="8dp"
-                                    />
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginTop="96dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:contentDescription="Delete user"
+                                    android:src="@android:drawable/ic_menu_delete"
+                                    android:visibility="gone"
+                                    app:backgroundTint="@color/red"
+                                    app:rippleColor="@color/red_light" />
                         </LinearLayout>
-                </LinearLayout>
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/delete_contact_landscape"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="96dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:contentDescription="TODO"
-                    android:src="@android:drawable/ic_menu_delete"
-                    app:backgroundTint="@color/red"
-                    app:rippleColor="@color/red_light"
-                    android:visibility="gone"
-                    />
-        </LinearLayout>
-</FrameLayout>
-</ScrollView>
+                </FrameLayout>
+        </ScrollView>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/delete_contact_portrait"
             android:layout_width="wrap_content"

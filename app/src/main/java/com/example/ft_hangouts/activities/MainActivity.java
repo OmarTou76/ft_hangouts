@@ -42,7 +42,6 @@ public class MainActivity extends AToolbar {
     @Override
     protected int getLayoutResource() { return R.layout.activity_main; }
 
-
     @Override
     protected String getActivityTitle() { return getString(R.string.contact); }
 
@@ -61,7 +60,7 @@ public class MainActivity extends AToolbar {
 
     private void configureContactsList() {
         ContactDatabaseHelper store = new ContactDatabaseHelper(this);
-        this.addMockContacts(store);
+        //this.addMockContacts(store);
         ArrayList<Contact> contacts = (ArrayList<Contact>) store.getAllContacts();
         RecyclerView contactsView = findViewById(R.id.rv_contact);
         ContactAdapter contactAdapter = new ContactAdapter(this, contacts);
@@ -88,10 +87,10 @@ public class MainActivity extends AToolbar {
     public void addMockContacts(ContactDatabaseHelper store) {
         if (!store.getAllContacts().isEmpty())
             return;
-        store.addContact(new Contact("Alice", "Martin", "0123456789", "alice.martin@example.com"));
-        store.addContact(new Contact("Bob", "Dupont", "0612345678", "bob.dupont@example.com"));
-        store.addContact(new Contact("Claire", "Leroy", "0789123456", "claire.leroy@example.com"));
-        store.addContact(new Contact("David", "Moreau", "0654321098", "david.moreau@example.com"));
+        store.addContact(new Contact("Alice", "Martin", "0123456789", "alice.martin@example.com", "Ali"));
+        store.addContact(new Contact("Bob", "Dupont", "0612345678", "bob.dupont@example.com", "B"));
+        store.addContact(new Contact("Claire", "Leroy", "0789123456", "claire.leroy@example.com", "C"));
+        store.addContact(new Contact("David", "Moreau", "0654321098", "david.moreau@example.com", ""));
     }
 
 

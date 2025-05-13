@@ -18,6 +18,7 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_FIRST_NAME = "first_name";
     private static final String COLUMN_LAST_NAME = "last_name";
+    private static final String COLUMN_NICKNAME = "nickname";
     private static final String COLUMN_PHONE_NUMBER = "phone_number";
     private static final String COLUMN_EMAIL = "email";
 
@@ -31,6 +32,7 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_FIRST_NAME + " TEXT, "
                 + COLUMN_LAST_NAME + " TEXT, "
+                + COLUMN_NICKNAME + " TEXT, "
                 + COLUMN_PHONE_NUMBER + " TEXT, "
                 + COLUMN_EMAIL + " TEXT)";
         db.execSQL(query);
@@ -50,6 +52,7 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_LAST_NAME, contact.getLastName());
         values.put(COLUMN_PHONE_NUMBER, normalizePhoneNumber(contact.getPhone()));
         values.put(COLUMN_EMAIL, contact.getEmail());
+        values.put(COLUMN_NICKNAME, contact.getNickname());
         db.insert(TABLE_CONTACTS,null, values);
         db.close();
     }
@@ -77,6 +80,7 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
             contact.setId(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)));
             contact.setFirstName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FIRST_NAME)));
             contact.setLastName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LAST_NAME)));
+            contact.setNickname(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NICKNAME)));
             contact.setPhone(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PHONE_NUMBER)));
             contact.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EMAIL)));
             filteredContacts.add(contact);
@@ -101,6 +105,7 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
 
         values.put(COLUMN_FIRST_NAME, contact.getFirstName());
         values.put(COLUMN_LAST_NAME, contact.getLastName());
+        values.put(COLUMN_NICKNAME, contact.getNickname());
         values.put(COLUMN_PHONE_NUMBER, normalizePhoneNumber(contact.getPhone()));
         values.put(COLUMN_EMAIL, contact.getEmail());
 
@@ -145,6 +150,7 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
             contact.setId(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)));
             contact.setFirstName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FIRST_NAME)));
             contact.setLastName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LAST_NAME)));
+            contact.setNickname(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NICKNAME)));
             contact.setPhone(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PHONE_NUMBER)));
             contact.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EMAIL)));
             cursor.close();
@@ -163,6 +169,7 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
                 contact.setId(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)));
                 contact.setFirstName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FIRST_NAME)));
                 contact.setLastName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LAST_NAME)));
+                contact.setNickname(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NICKNAME)));
                 contact.setPhone(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PHONE_NUMBER)));
                 contact.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EMAIL)));
                 contacts.add(contact);
